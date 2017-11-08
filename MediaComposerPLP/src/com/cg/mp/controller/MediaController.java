@@ -45,11 +45,15 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value ="/modifyOrDelete.obj")
-	public String compSelect(@RequestParam("modify") String modify,@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO, Model model)
+	public String compSelect(@RequestParam("submit") String submit,@RequestParam("composerId") String composerId,@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO, Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
-		//if(("modify").equals(modify))
+		System.out.println(submit);
+		System.out.println(composerId);
+		
+	
 		System.out.println(composerMasterDTO);
+		
 		model.addAttribute("composerMasterDTO",composerMasterDTO);
 		return "Composer";
 	}

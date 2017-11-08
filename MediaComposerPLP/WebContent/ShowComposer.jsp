@@ -12,7 +12,10 @@
 <table >
 
 
+
+
 <form:form method="post" modelAttribute="composerMasterDTO" action="modifyOrDelete.obj">
+
 <table border="1">
 <c:forEach items="${composerList}" var="composer">
 <tr>
@@ -57,12 +60,13 @@
 
 </c:forEach>
 <tr>
-<td colspan="2"><input type="submit" name="modify" value="modify"/></td>
-<td colspan="2"><input type="submit" name="delete" value="delete"/></td>
+<td colspan="2"><input type="submit" name="submit" value="modify"/></td>
+<td colspan="2"><input type="submit" name="submit" value="delete"/></td>
 </tr>
 </table>
 
 </form:form>
+
 </table>
 </body>
 </html>
