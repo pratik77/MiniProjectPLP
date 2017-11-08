@@ -8,7 +8,7 @@ import com.cg.mp.dto.ComposerMasterDTO;
 public interface IMediaService {
 	List<ComposerMasterDTO> loadAllComposer();
 
-	String checkLogin(String username, String password);
+	String checkLogin(int username, String password);
 
 
 }

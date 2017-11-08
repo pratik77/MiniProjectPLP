@@ -2,14 +2,36 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="USER_MASTER")
 public class UserMasterDTO 
 {
+	@Id
+	@Column(name="USER_ID")
 	private int userId;
+	
+	@Column(name="USER_PASSWORD")
 	private String userPassword;
+	
+	@Column(name="CREATED_BY")
 	private int createdBy;
+	
+	@Column(name="CREATED_ON")
 	private Date createdOn;
+	
+	@Column(name="UPDATED_BY")
 	private int updatedBy;
+	
+	@Column(name="UPDATED_ON")
 	private Date updatedOn;
+	
+	@Column(name="USER_FLAG")
 	private int userFlag;
 	public int getUserFlag() {
 		return userFlag;
