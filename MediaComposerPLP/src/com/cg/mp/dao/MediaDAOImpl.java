@@ -19,11 +19,11 @@ public class MediaDAOImpl implements IMediaDAO {
 	private EntityManager entityManager;
 	
 	@Override
-	public int checkLogin(String username, String password) {
+	public int checkLogin(int username, String password) {
 		// TODO Auto-generated method stub
 		
-		TypedQuery<UserMasterDTO> query = entityManager.createQuery("SELECT userMasterDTO FROM UserMasterDTO"
-				+ "userMasterDTO WHERE userMasterDTO.userId=:puserId and userMasterDTO.userPassword=:puserPassword", UserMasterDTO.class);
+		TypedQuery<UserMasterDTO> query = entityManager.createQuery("SELECT userMasterDTO FROM UserMasterDTO "
+				+ "userMasterDTO WHERE userMasterDTO.userId=:puserId AND userMasterDTO.userPassword=:puserPassword", UserMasterDTO.class);
 		query.setParameter("puserId", username);
 		query.setParameter("puserPassword", password);
 		UserMasterDTO userMasterDTO = query.getSingleResult();

@@ -2,7 +2,7 @@ package com.cg.mp.dao;
 
 public interface IMediaDAO {
 
-	int checkLogin(String username, String password);
+	int checkLogin(int username, String password);
 	
 
 }

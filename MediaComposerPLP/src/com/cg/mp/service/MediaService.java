@@ -15,7 +15,7 @@ public class MediaService implements IMediaService {
 	int userFlag;
 	
 	@Override
-	public String checkLogin(String username, String password) {
+	public String checkLogin(int username, String password) {
 		// TODO Auto-generated method stub
 		userFlag=mediaDAO.checkLogin(username,password);
 		if(userFlag==1)

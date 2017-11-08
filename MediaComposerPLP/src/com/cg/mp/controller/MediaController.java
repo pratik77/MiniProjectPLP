@@ -19,11 +19,12 @@ public class MediaController {
 	String userFlag;
 	
 	@RequestMapping("/login.obj")
-	public String checkLogin(@RequestParam("username") String username,
+	public String checkLogin(@RequestParam("username") int username,
 			@RequestParam("password") String password,
 			Model map){
 		
 		userFlag=mediaService.checkLogin(username,password);
+		System.out.println(userFlag);
 		return userFlag;
 	}
 
