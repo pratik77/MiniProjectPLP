@@ -16,18 +16,15 @@ public class MediaController {
 	@Autowired
 	private IMediaService mediaService;
 	
+	String userFlag;
+	
 	@RequestMapping("/login.obj")
-	public String getMainPage(@RequestParam("username") String username,
+	public String checkLogin(@RequestParam("username") String username,
 			@RequestParam("password") String password,
 			Model map){
-		String redirect;
 		
-		if(username.equals("bvk") && password.equalsIgnoreCase("bvk")){
-			redirect = new String("traineemgtsys");
-		}else{
-			redirect = new String("../../login");
-		}
-		return redirect;
+		userFlag=mediaService.checkLogin(username,password);
+		return userFlag;
 	}
 
 }
