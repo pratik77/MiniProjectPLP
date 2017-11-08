@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="Composer.jsp">Go there</a>
+<h1>ldfsdklfnl</h1>
 </body>
 </html>

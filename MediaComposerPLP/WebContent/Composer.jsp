@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="Composer.jsp">Go there</a>
+<a href="retrieveAllComposer.obj">JAAO</a>
 </body>
 </html>

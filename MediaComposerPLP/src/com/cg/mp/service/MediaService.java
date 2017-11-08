@@ -13,13 +13,7 @@ import com.cg.mp.dto.ComposerMasterDTO;
 @Component("service")
 public class MediaService implements IMediaService {
 	
-	@Override
-	public List<ComposerMasterDTO> loadAllComposer() 
-	{
-		
-		return null;
-	}
-
+	
 	@Autowired
 	IMediaDAO	mediaDAO;
 	
@@ -37,5 +31,12 @@ public class MediaService implements IMediaService {
 			return "errorLogin";
 			
 	}
+	
+	@Override
+	public List<ComposerMasterDTO> loadAllComposer() 
+	{
+		return mediaDAO.loadAllComposer();
+	}
+
 
 }
