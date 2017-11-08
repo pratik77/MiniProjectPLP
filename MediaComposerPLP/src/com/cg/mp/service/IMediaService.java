@@ -1,5 +1,9 @@
 package com.cg.mp.service;
 
-public interface IMediaService {
+import java.util.List;
 
+import com.cg.mp.dto.ComposerMasterDTO;
+
+public interface IMediaService {
+	List<ComposerMasterDTO> loadAllComposer();
 }

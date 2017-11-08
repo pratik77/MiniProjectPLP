@@ -2,28 +2,52 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="composer_master")
 public class ComposerMasterDTO 
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="composer_id")
 	private int composerId;
+	@Column(name="composer_name")
 	private String composerName;
+	@Column(name="composer_borndate")
 	private Date composerBornDate;
+	@Column(name="composer_dieddate")
 	private Date composerDiedDate;
+	@Column(name="composer_caeipinumber")
 	private String composerCaeipiNumber;
+	@Column(name="composer_musicsocietyid")
 	private String composerMusicSocId;
+	@Column(name="created_by")
 	private int createdBy;
+	@Column(name="created_on")
 	private Date createdOn;
+	@Column(name="updated_by")
 	private int updatedBy;
+	@Column(name="updated_on")
 	private Date updatedOn;
+	@Column(name="composer_deletedflag")
 	private int composerDelFlag;
-	public void disp()
-	{
-		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.printf("%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s\n","ComposerId","Composer Name","Born Date","Died Date","Caeipi No.","MusicSoc ID","createdBy","Created On","UpdatedBy","Updated On","Del Flag");
-		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-	}
+	
 	@Override
 	public String toString() {
-		return String.format("%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s%-30s", composerId, composerName, composerBornDate,composerDiedDate,composerCaeipiNumber,composerMusicSocId,createdBy,createdOn,updatedBy,updatedOn,composerDelFlag);
+		return "ComposerMasterDTO [composerId=" + composerId
+				+ ", composerName=" + composerName + ", composerBornDate="
+				+ composerBornDate + ", composerDiedDate=" + composerDiedDate
+				+ ", composerCaeipiNumber=" + composerCaeipiNumber
+				+ ", composerMusicSocId=" + composerMusicSocId + ", createdBy="
+				+ createdBy + ", createdOn=" + createdOn + ", updatedBy="
+				+ updatedBy + ", updatedOn=" + updatedOn + ", composerDelFlag="
+				+ composerDelFlag + "]";
 	}
 	public int getComposerId() {
 		return composerId;
