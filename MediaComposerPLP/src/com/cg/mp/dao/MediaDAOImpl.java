@@ -38,4 +38,10 @@ public class MediaDAOImpl implements IMediaDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public int checkLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

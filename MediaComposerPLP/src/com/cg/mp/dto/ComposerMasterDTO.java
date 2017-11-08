@@ -2,7 +2,6 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
-<<<<<<< HEAD
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="composer_master")
-=======
 
->>>>>>> 80a29455bdb2a3469ad745514b82633c24c44222
 public class ComposerMasterDTO 
 {
 	@Id
