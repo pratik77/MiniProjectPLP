@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,13 +35,23 @@ public class MediaController {
 	
 
 	@RequestMapping(value ="/retrieveAllComposer.obj")
-	public String compSelect()
+	public String compSelect(Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
 		List<ComposerMasterDTO> composerList = mediaService.loadAllComposer();
-		System.out.println(composerList);
-		//model.addAttribute("composerList",composerList);
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("composerMasterDTO",new ComposerMasterDTO());
 		return "ShowComposer";
+	}
+	
+	@RequestMapping(value ="/modifyOrDelete.obj")
+	public String compSelect(@RequestParam("modify") String modify,@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO, Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		//if(("modify").equals(modify))
+		System.out.println(composerMasterDTO);
+		model.addAttribute("composerMasterDTO",composerMasterDTO);
+		return "Composer";
 	}
 
 

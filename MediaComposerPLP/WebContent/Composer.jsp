@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="retrieveAllComposer.obj">JAAO</a>
+${composerMasterDTO}
 </body>
 </html>

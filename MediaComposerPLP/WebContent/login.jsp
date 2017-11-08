@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
+
 <a href="Composer.jsp">Go there</a>
-=======
+
 
 <form action="login.obj" method="post">
 <table>
@@ -25,6 +25,5 @@
 </table>
 </form>
 
->>>>>>> 80a29455bdb2a3469ad745514b82633c24c44222
 </body>
 </html>
