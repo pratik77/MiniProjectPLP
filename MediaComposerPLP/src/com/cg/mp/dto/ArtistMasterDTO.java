@@ -2,17 +2,48 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="artist_master")
 public class ArtistMasterDTO {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="artist_id")
 	private int artistId;
+	
+	@Column(name="artist_name")
 	private String artistName;
+	
+	@Column(name="artist_type")
 	private String artistType;
+	
+	@Column(name="artist_borndate")
 	private Date artistBornDate;
+	
+	@Column(name="artist_dieddate")
 	private Date artistDiedDate;
+	
+	@Column(name="created_by")
 	private int createdBy;
+	
+	@Column(name="created_on")
 	private Date createdOn;
+	
+	@Column(name="updated_by")
 	private int updatedBy;
+	
+	@Column(name="updated_on")
 	private Date updatedOn;
+	
+	@Column(name="artist_deletedflag")
 	private int artistDelFlag;
+	
 	public void disp()
 	{
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");

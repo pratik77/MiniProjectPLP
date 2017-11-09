@@ -2,6 +2,7 @@ package com.cg.mp.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.mp.dto.ComposerMasterDTO;
+import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.service.IMediaService;
 
 
@@ -23,7 +25,10 @@ public class MediaController {
 	@Autowired
 	private IMediaService mediaService;
 	
+	List<ComposerMasterDTO> composerList=new ArrayList();
+	List<SongMasterDTO> songList=new ArrayList();
 	String userFlag;
+	int userId;
 	
 	@RequestMapping("/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
@@ -32,6 +37,7 @@ public class MediaController {
 		map.addAttribute("username",username);
 		userFlag=mediaService.checkLogin(username,password);
 		System.out.println(userFlag);
+		userId=username;
 		return userFlag;
 
 	}
@@ -41,6 +47,8 @@ public class MediaController {
 	public String compSelect(@RequestParam("username") String username,Model model)
 	{
 		List<ComposerMasterDTO> composerList = mediaService.loadAllComposer();
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		composerList = mediaService.loadAllComposer();
 		model.addAttribute("composerList",composerList);
 		model.addAttribute("composerMasterDTO",new ComposerMasterDTO());
 		return "ShowComposer";
@@ -58,7 +66,6 @@ public class MediaController {
 		model.addAttribute("composerMasterDTO",composerMasterDTO);
 		return "Composer";
 	}
-	
 	@RequestMapping("/insertComposer.obj")
 	public String add(Model model)
 	{
@@ -79,6 +86,24 @@ public class MediaController {
 		model.addAttribute("message","Composer with Id "+composer.getComposerId()+" added successfully!");
 		return "successComposer";	
 	}
-
+	@RequestMapping(value ="/retrieveComposerSong.obj")
+	public String retrieveCompSong( Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		composerList = mediaService.loadAllComposer();
+		songList = mediaService.loadAllSongs();
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("songList",songList);
+		return "composerSongAssoc";
+	}
+	
+	@RequestMapping(value ="/composerSongAssoc.obj")
+	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
+			@RequestParam("songSelect")int[] songIdList,Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		
+		return "composerSongAssoc";
+	}
 
 }
