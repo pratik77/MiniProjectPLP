@@ -2,16 +2,39 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SONG_MASTER")
 public class SongMasterDTO 
 {
 
+	@Id
+	@Column(name="SONG_ID")
 	private int songId;
+	
+	@Column(name="SONG_NAME")
 	private String songName;
+	
+	@Column(name="SONG_DURATION")
 	private String songDuration;
+	
+	@Column(name="CREATED_BY")
 	private int createdBy;
+	
+	@Column(name="CREATED_ON")
 	private Date createdOn;
+	
+	@Column(name="UPDATED_BY")
 	private int updatedBy;
+	
+	@Column(name="UPDATED_ON")
 	private Date updatedOn;
+	
+	@Column(name="SONG_DELETEDFLAG")
 	private int songDelFlag;
 
 

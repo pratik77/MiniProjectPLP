@@ -1,5 +1,6 @@
 package com.cg.mp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.mp.dto.ComposerMasterDTO;
+import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.service.IMediaService;
 
 
@@ -20,6 +22,8 @@ public class MediaController {
 	@Autowired
 	private IMediaService mediaService;
 	
+	List<ComposerMasterDTO> composerList=new ArrayList();
+	List<SongMasterDTO> songList=new ArrayList();
 	String userFlag;
 	
 	@RequestMapping("/login.obj")
@@ -38,7 +42,7 @@ public class MediaController {
 	public String compSelect(Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
-		List<ComposerMasterDTO> composerList = mediaService.loadAllComposer();
+		composerList = mediaService.loadAllComposer();
 		model.addAttribute("composerList",composerList);
 		model.addAttribute("composerMasterDTO",new ComposerMasterDTO());
 		return "ShowComposer";
@@ -56,6 +60,17 @@ public class MediaController {
 		
 		model.addAttribute("composerMasterDTO",composerMasterDTO);
 		return "Composer";
+	}
+	
+	@RequestMapping(value ="/retrieveComposerSong.obj")
+	public String compSongAssoc( Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		composerList = mediaService.loadAllComposer();
+		songList = mediaService.loadAllSongs();
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("songList",songList);
+		return "composerSongAssoc";
 	}
 
 

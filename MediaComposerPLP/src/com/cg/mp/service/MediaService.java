@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.mp.dao.IMediaDAO;
 import com.cg.mp.dto.ComposerMasterDTO;
+import com.cg.mp.dto.SongMasterDTO;
 
 
 
@@ -36,6 +37,12 @@ public class MediaService implements IMediaService {
 	public List<ComposerMasterDTO> loadAllComposer() 
 	{
 		return mediaDAO.loadAllComposer();
+	}
+
+	@Override
+	public List<SongMasterDTO> loadAllSongs() {
+		// TODO Auto-generated method stub
+		return mediaDAO.loadAllSongs();
 	}
 
 
