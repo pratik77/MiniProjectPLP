@@ -21,41 +21,17 @@
 <tr>
 
 <td><form:radiobutton path="composerId" value="${composer.composerId }"/>${composer.composerId}</td>
-<td><form:errors path="composerId" style="color:red"/></td>
-
-
-<td><form:input path="composerName" value="${composer.composerName }"/></td>
-<td><form:errors path="composerName" style="color:red"/></td>
-
-
-
-<td><form:input path="composerBornDate" value="${composer.composerBornDate }"/></td>
-<td><form:errors path="composerBornDate" style="color:red"/></td>
-
-
-
-<td><form:input path="composerDiedDate" value="${composer.composerDiedDate }"/></td>
-<td><form:errors path="composerDiedDate" style="color:red"/></td>
-
-
-<td><form:input path="composerCaeipiNumber" value="${composer.composerCaeipiNumber }"/></td>
-<td><form:errors path="composerCaeipiNumber" style="color:red"/></td>
-
-
-<td><form:input path="composerMusicSocId" value="${composer.composerMusicSocId }"/></td>
-<td><form:errors path="composerMusicSocId" style="color:red"/></td>
-
-<td><form:input path="createdBy" value="${composer.createdBy }"/></td>
-<td><form:errors path="createdBy" style="color:red"/></td>
-
-<td><form:input path="createdOn" value="${composer.createdOn }"/></td>
-<td><form:errors path="createdOn" style="color:red"/></td>
-
-<td><form:input path="updatedBy" value="${composer.updatedBy }"/></td>
-<td><form:errors path="updatedBy" style="color:red"/></td>
-
-<td><form:input path="updatedOn" value="${composer.updatedOn }"/></td>
-<td><form:errors path="updatedOn" style="color:red"/></td>
+<td>
+<td>${composer.composerName }</td>
+<td>${composer.composerBornDate }</td>
+<td>${composer.composerDiedDate }</td>
+<td>${composer.composerCaeipiNumber }</td>
+<td>${composer.composerMusicSocId }</td>
+<td>${composer.createdBy }</td>
+<td>${composer.createdOn }</td>
+<td>${composer.updatedBy }</td>
+<td>${composer.updatedOn }</td>
+</td>
 </tr>
 
 </c:forEach>
