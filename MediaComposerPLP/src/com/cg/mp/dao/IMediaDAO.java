@@ -11,11 +11,13 @@ public interface IMediaDAO {
 	List<ComposerMasterDTO> loadAllComposer();
 
 	int checkLogin(int username, String password);
-<<<<<<< HEAD
 	
 	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
-=======
+
 	List<SongMasterDTO> loadAllSongs();
->>>>>>> 0c6eab4e960ef7bb3faf779d7a5ef881aa1b51ad
+	
+	ComposerMasterDTO getComposerById(int composerId);
+	
+	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO);
 
 }

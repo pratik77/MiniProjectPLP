@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<a href="Composer.jsp">Go there</a>
-
-
 <form action="login.obj" method="post">
 <table>
 <tr>

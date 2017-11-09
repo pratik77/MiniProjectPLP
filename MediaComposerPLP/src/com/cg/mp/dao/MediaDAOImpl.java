@@ -55,4 +55,17 @@ public class MediaDAOImpl implements IMediaDAO {
 		return composer;
 	}
 
+	@Override
+	public ComposerMasterDTO getComposerById(int composerId) {
+		ComposerMasterDTO composer = entityManager.find(ComposerMasterDTO.class, composerId);
+		return composer;
+	}
+
+	@Override
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+		composerMasterDTO = entityManager.merge(composerMasterDTO);
+		entityManager.flush();
+		return composerMasterDTO;
+	}
+
 }

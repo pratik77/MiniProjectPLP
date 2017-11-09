@@ -16,11 +16,11 @@
 		<br/>`
 
 		<form:label path="composerBornDate">Composer Birth Date:</form:label>
-		<form:input path="composerBornDate" required="true" />
+		<form:input type="date" path="composerBornDate" required="true" />
 		<br/>
 		
 		<form:label path="composerDiedDate">Composer Death Date:</form:label>
-		<form:input path="composerDiedDate" required="true" />
+		<form:input type="date" path="composerDiedDate" required="true" />
 		<br/>
 		
 		<form:label path="composerCaeipiNumber">Composer CAEIPI Number:</form:label>
