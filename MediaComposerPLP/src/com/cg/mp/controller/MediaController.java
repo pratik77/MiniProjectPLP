@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.service.IMediaService;
@@ -22,19 +21,10 @@ public class MediaController {
 
 	@Autowired
 	private IMediaService mediaService;
-<<<<<<< HEAD
 
 	List<ComposerMasterDTO> composerList=new ArrayList();
 	List<SongMasterDTO> songList=new ArrayList();
 	String userFlag,message="";
-=======
-	
-	List<ComposerMasterDTO> composerList = new ArrayList<>();
-	List<SongMasterDTO> songList = new ArrayList<>();
-	List<ArtistMasterDTO> artistList = new ArrayList<>();
-	
-	String userFlag;
->>>>>>> 84afec0bcdf7478964a7854248f0f3a9dbc21627
 	int userId;
 
 	@RequestMapping("/login.obj")
@@ -84,35 +74,7 @@ public class MediaController {
 		model.addAttribute("songList",songList);
 		return "composerSongAssoc";
 	}
-<<<<<<< HEAD
 
-=======
-	
-<<<<<<< HEAD
-	@RequestMapping(value ="/retrieveAllArtist.obj")
-	public String artistSelect(Model model)
-	{
-		//@ModelAttribute("composer") ComposerMasterDTO 
-		artistList = mediaService.loadAllArtists();
-		model.addAttribute("artistList",artistList);
-		model.addAttribute("artistMasterDTO",new ArtistMasterDTO());
-		return "ShowArtist";
-	}
-	
-	@RequestMapping(value ="/modifyOrDeleteArtist.obj")
-	public String artistSelect(@RequestParam("submit") String submit,@RequestParam("artistId") String artistId,@ModelAttribute("artistMasterDTO") ArtistMasterDTO artistMasterDTO, Model model)
-	{
-		//@ModelAttribute("composer") ComposerMasterDTO 
-		System.out.println(submit);
-		System.out.println(artistId);
-		
-		System.out.println(artistMasterDTO);
-		
-		model.addAttribute("artistMasterDTO",artistMasterDTO);
-		return "Artist";
-	}
-=======
->>>>>>> 84afec0bcdf7478964a7854248f0f3a9dbc21627
 	@RequestMapping(value ="/composerSongAssoc.obj")
 	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
 			@RequestParam("songSelect")int[] songIdList,Model model)
@@ -125,7 +87,6 @@ public class MediaController {
 		return "composerSongAssocSuccess";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value ="/retrieveArtistSong.obj")
 	public String artistSongAssoc( @RequestParam("composerSelect")int composerId,
 			@RequestParam("songSelect")int[] songIdList,Model model)
@@ -138,9 +99,6 @@ public class MediaController {
 		return "composerSongAssocSuccess";
 	}
 
-=======
->>>>>>> 0c6eab4e960ef7bb3faf779d7a5ef881aa1b51ad
->>>>>>> 84afec0bcdf7478964a7854248f0f3a9dbc21627
 
 
 }

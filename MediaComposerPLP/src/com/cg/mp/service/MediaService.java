@@ -51,7 +51,6 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void compSongAssoc(int composerId, int[] songIdList, int userId) {
 		// TODO Auto-generated method stub
 		for(int songId:songIdList)
@@ -64,12 +63,13 @@ public class MediaService implements IMediaService {
 			composerSongAssoc.setUpdatedOn(Date.valueOf(LocalDate.now()));
 			mediaDAO.compSongAssoc(composerSongAssoc);
 		}
+	}
 		
-=======
+
 	public List<ArtistMasterDTO> loadAllArtists() {
 		
 		return mediaDAO.loadAllArtists();
->>>>>>> 84afec0bcdf7478964a7854248f0f3a9dbc21627
+
 	}
 
 
