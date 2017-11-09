@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cg.mp.dto.ArtistMasterDTO;
+import com.cg.mp.dto.ArtistSongAssoc;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
@@ -23,6 +24,8 @@ public class MediaDAOImpl implements IMediaDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	UserMasterDTO userMasterDTO=new UserMasterDTO();
+	
 	@Override
 	public int checkLogin(int username, String password) {
 
@@ -30,8 +33,10 @@ public class MediaDAOImpl implements IMediaDAO {
 				+ "userMasterDTO WHERE userMasterDTO.userId=:puserId AND userMasterDTO.userPassword=:puserPassword", UserMasterDTO.class);
 		query.setParameter("puserId", username);
 		query.setParameter("puserPassword", password);
-		UserMasterDTO userMasterDTO = query.getSingleResult();
-		return userMasterDTO.getUserFlag();
+		List<UserMasterDTO> userMasterList = query.getResultList();
+		if(userMasterList.size()==0)
+			return 3;
+		return userMasterList.get(0).getUserFlag();
 	}
 
 	@Override
@@ -49,12 +54,12 @@ public class MediaDAOImpl implements IMediaDAO {
 	}
 
 	@Override
-
 	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
 		// TODO Auto-generated method stub
 		entityManager.persist(composerSongAssoc);
 		entityManager.flush();
 	}
+	
 	public List<ArtistMasterDTO> loadAllArtists() {
 
 		TypedQuery<ArtistMasterDTO> query = entityManager.createQuery("select a from ArtistMasterDTO a", ArtistMasterDTO.class);
@@ -72,15 +77,18 @@ public class MediaDAOImpl implements IMediaDAO {
 
 	@Override
 	public ArtistMasterDTO deleteArtist(int artistId) {
-<<<<<<< HEAD
+
 		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
 		entityManager.remove(artistMasterDTO);
 		return artistMasterDTO;
-=======
-		
-		return null;
+	}
 
->>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
+	@Override
+	public void artistSongAssoc(ArtistSongAssoc artistSongAssoc) {
+		// TODO Auto-generated method stub
+		entityManager.persist(artistSongAssoc);
+		entityManager.flush();
+		
 	}
 
 }

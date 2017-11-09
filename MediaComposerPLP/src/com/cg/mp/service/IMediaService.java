@@ -14,15 +14,15 @@ public interface IMediaService {
 
 	List<SongMasterDTO> loadAllSongs();
 
-<<<<<<< HEAD
+
 	void compSongAssoc(int composerId, int[] songIdList, int userId);
 
-=======
 	List<ArtistMasterDTO> loadAllArtists();
 	ArtistMasterDTO getArtistById(int artistId);
 	ArtistMasterDTO deleteArtist(int artistId);
 
+	void artistSongAssoc(int artistId, int[] songIdList, int userId);
+
 	
->>>>>>> 84afec0bcdf7478964a7854248f0f3a9dbc21627
 
 }
