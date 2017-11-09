@@ -1,5 +1,7 @@
 package com.cg.mp.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.cg.mp.dao.IMediaDAO;
 import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
+import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
 
 
@@ -20,6 +23,7 @@ public class MediaService implements IMediaService {
 	IMediaDAO	mediaDAO;
 	
 	int userFlag;
+	ComposerSongAssoc composerSongAssoc=new ComposerSongAssoc();
 	
 	@Override
 	public String checkLogin(int username, String password) {
@@ -47,9 +51,25 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
+	public void compSongAssoc(int composerId, int[] songIdList, int userId) {
+		// TODO Auto-generated method stub
+		for(int songId:songIdList)
+		{
+			composerSongAssoc.setComposerId(composerId);
+			composerSongAssoc.setSongId(songId);
+			composerSongAssoc.setCreatedBy(userId);
+			composerSongAssoc.setCreatedOn(Date.valueOf(LocalDate.now()));
+			composerSongAssoc.setUpdatedBy(userId);
+			composerSongAssoc.setUpdatedOn(Date.valueOf(LocalDate.now()));
+			mediaDAO.compSongAssoc(composerSongAssoc);
+		}
+	}
+		
+
 	public List<ArtistMasterDTO> loadAllArtists() {
 		
 		return mediaDAO.loadAllArtists();
+
 	}
 
 	@Override
