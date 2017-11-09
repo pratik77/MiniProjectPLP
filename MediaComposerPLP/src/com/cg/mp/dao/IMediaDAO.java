@@ -8,7 +8,6 @@ import com.cg.mp.dto.SongMasterDTO;
 public interface IMediaDAO {
 
 
-	int checkLogin(String username, String password);
 	List<ComposerMasterDTO> loadAllComposer();
 
 	int checkLogin(int username, String password);
