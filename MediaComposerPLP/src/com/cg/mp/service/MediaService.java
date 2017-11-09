@@ -72,5 +72,17 @@ public class MediaService implements IMediaService {
 
 	}
 
+	@Override
+	public ArtistMasterDTO getArtistById(int artistId) {
+		
+		return mediaDAO.getArtistById(artistId);
+	}
+
+	@Override
+	public ArtistMasterDTO deleteArtist(int artistId) {
+		
+		return mediaDAO.deleteArtist(artistId);
+	}
+
 
 }

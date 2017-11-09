@@ -68,10 +68,17 @@ public class MediaController {
 		model.addAttribute("songList",songList);
 		return "composerSongAssoc";
 	}
+<<<<<<< HEAD
+	
+
+	@RequestMapping(value ="/retrieveAllArtist.obj")
+	public String artistSelect(Model model)
+=======
 
 	@RequestMapping(value ="/composerSongAssoc.obj")
 	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
 			@RequestParam("songSelect")int[] songIdList,Model model)
+>>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
 		mediaService.compSongAssoc(composerId,songIdList,userId);
@@ -81,8 +88,26 @@ public class MediaController {
 		return "composerSongAssocSuccess";
 	}
 	
+<<<<<<< HEAD
+	@RequestMapping(value ="/modifyOrDeleteArtist.obj")
+	public String artistSelect(@RequestParam("submit") String submit,@RequestParam("artistId") String artistId,@ModelAttribute("artistMasterDTO") ArtistMasterDTO artistMasterDTO, Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		System.out.println(submit);
+		System.out.println(artistId);
+		
+		System.out.println(artistMasterDTO);
+		
+		model.addAttribute("artistMasterDTO",artistMasterDTO);
+		return "Artist";
+	}
+
+	@RequestMapping(value ="/composerSongAssoc.obj")
+	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
+=======
 	@RequestMapping(value ="/retrieveArtistSong.obj")
 	public String artistSongAssoc( @RequestParam("composerSelect")int composerId,
+>>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
 			@RequestParam("songSelect")int[] songIdList,Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
@@ -92,7 +117,11 @@ public class MediaController {
 		model.addAttribute("message","Composer and songs associated successfully");
 		return "composerSongAssocSuccess";
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
 
 
 }

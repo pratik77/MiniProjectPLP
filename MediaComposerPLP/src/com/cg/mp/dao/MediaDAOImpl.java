@@ -72,9 +72,15 @@ public class MediaDAOImpl implements IMediaDAO {
 
 	@Override
 	public ArtistMasterDTO deleteArtist(int artistId) {
+<<<<<<< HEAD
+		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
+		entityManager.remove(artistMasterDTO);
+		return artistMasterDTO;
+=======
 		
 		return null;
 
+>>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
 	}
 
 }
