@@ -40,5 +40,6 @@
 Click on the radio button to select composer and select check boxes to associate multiple songs to the composer
 
 </form>
+<%-- <br><h3>${message }</h3> --%>
 </body>
 </html>

@@ -13,5 +13,7 @@ public interface IMediaService {
 
 	List<SongMasterDTO> loadAllSongs();
 
+	void compSongAssoc(int composerId, int[] songIdList, int userId);
+
 
 }

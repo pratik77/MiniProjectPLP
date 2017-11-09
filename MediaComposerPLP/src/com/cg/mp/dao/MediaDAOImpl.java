@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cg.mp.dto.ComposerMasterDTO;
+import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.dto.UserMasterDTO;
 
@@ -46,6 +47,13 @@ public class MediaDAOImpl implements IMediaDAO {
 		// TODO Auto-generated method stub
 		TypedQuery<SongMasterDTO> query = entityManager.createQuery("select songs from SongMasterDTO songs", SongMasterDTO.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
+		// TODO Auto-generated method stub
+		entityManager.persist(composerSongAssoc);
+		entityManager.flush();
 	}
 
 }

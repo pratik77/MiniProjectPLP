@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Hello Admin</h1>
-<a href="retrieveAllComposer.obj">1.Composer</a><br>
-<a href="retrieveComposerSong.obj">4.Composer Song Association</a><br>
-<a href="retrieveArtistSong.obj">5.Artist Song Association</a><br>
+<h1>${message }</h1><br><br><br>
+<a href="admin.jsp">Return to admin home page</a><br><br>
+<a href="login.jsp">Logout</a>
 </body>
 </html>

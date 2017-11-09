@@ -18,15 +18,15 @@ import com.cg.mp.service.IMediaService;
 
 @Controller
 public class MediaController {
-	
+
 	@Autowired
 	private IMediaService mediaService;
-	
+
 	List<ComposerMasterDTO> composerList=new ArrayList();
 	List<SongMasterDTO> songList=new ArrayList();
-	String userFlag;
+	String userFlag,message="";
 	int userId;
-	
+
 	@RequestMapping("/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
 			@RequestParam("password") String password,
@@ -38,7 +38,7 @@ public class MediaController {
 		return userFlag;
 
 	}
-	
+
 
 	@RequestMapping(value ="/retrieveAllComposer.obj")
 	public String compSelect(Model model)
@@ -49,21 +49,21 @@ public class MediaController {
 		model.addAttribute("composerMasterDTO",new ComposerMasterDTO());
 		return "ShowComposer";
 	}
-	
+
 	@RequestMapping(value ="/modifyOrDelete.obj")
 	public String compSelect(@RequestParam("submit") String submit,@RequestParam("composerId") String composerId,@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO, Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
 		System.out.println(submit);
 		System.out.println(composerId);
-		
-	
+
+
 		System.out.println(composerMasterDTO);
-		
+
 		model.addAttribute("composerMasterDTO",composerMasterDTO);
 		return "Composer";
 	}
-	
+
 	@RequestMapping(value ="/retrieveComposerSong.obj")
 	public String retrieveCompSong( Model model)
 	{
@@ -74,16 +74,31 @@ public class MediaController {
 		model.addAttribute("songList",songList);
 		return "composerSongAssoc";
 	}
-	
+
 	@RequestMapping(value ="/composerSongAssoc.obj")
 	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
 			@RequestParam("songSelect")int[] songIdList,Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
-		
-		return "composerSongAssoc";
+		mediaService.compSongAssoc(composerId,songIdList,userId);
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("songList",songList);
+		model.addAttribute("message","Composer and songs associated successfully");
+		return "composerSongAssocSuccess";
 	}
 	
+	@RequestMapping(value ="/retrieveArtistSong.obj")
+	public String artistSongAssoc( @RequestParam("composerSelect")int composerId,
+			@RequestParam("songSelect")int[] songIdList,Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		mediaService.compSongAssoc(composerId,songIdList,userId);
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("songList",songList);
+		model.addAttribute("message","Composer and songs associated successfully");
+		return "composerSongAssocSuccess";
+	}
+
 
 
 }
