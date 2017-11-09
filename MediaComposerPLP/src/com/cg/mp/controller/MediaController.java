@@ -53,12 +53,6 @@ public class MediaController {
 	@RequestMapping(value ="/modifyOrDelete.obj")
 	public String compSelect(@RequestParam("submit") String submit,@RequestParam("composerId") String composerId,@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO, Model model)
 	{
-		//@ModelAttribute("composer") ComposerMasterDTO 
-		System.out.println(submit);
-		System.out.println(composerId);
-
-
-		System.out.println(composerMasterDTO);
 
 		model.addAttribute("composerMasterDTO",composerMasterDTO);
 		return "Composer";
