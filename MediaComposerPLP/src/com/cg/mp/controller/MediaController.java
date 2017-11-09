@@ -25,6 +25,7 @@ public class MediaController {
 	List<ComposerMasterDTO> composerList=new ArrayList();
 	List<SongMasterDTO> songList=new ArrayList();
 	String userFlag;
+	int userId;
 	
 	@RequestMapping("/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
@@ -33,6 +34,7 @@ public class MediaController {
 
 		userFlag=mediaService.checkLogin(username,password);
 		System.out.println(userFlag);
+		userId=username;
 		return userFlag;
 
 	}
@@ -63,7 +65,7 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value ="/retrieveComposerSong.obj")
-	public String compSongAssoc( Model model)
+	public String retrieveCompSong( Model model)
 	{
 		//@ModelAttribute("composer") ComposerMasterDTO 
 		composerList = mediaService.loadAllComposer();
@@ -72,6 +74,16 @@ public class MediaController {
 		model.addAttribute("songList",songList);
 		return "composerSongAssoc";
 	}
+	
+	@RequestMapping(value ="/composerSongAssoc.obj")
+	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
+			@RequestParam("songSelect")int[] songIdList,Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		
+		return "composerSongAssoc";
+	}
+	
 
 
 }
