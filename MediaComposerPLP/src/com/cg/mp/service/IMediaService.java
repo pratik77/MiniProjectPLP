@@ -15,6 +15,8 @@ public interface IMediaService {
 	List<SongMasterDTO> loadAllSongs();
 
 	List<ArtistMasterDTO> loadAllArtists();
+	ArtistMasterDTO getArtistById(int artistId);
+	ArtistMasterDTO deleteArtist(int artistId);
 
 	
 

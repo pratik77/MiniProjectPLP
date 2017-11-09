@@ -78,7 +78,7 @@ public class MediaController {
 		return "composerSongAssoc";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value ="/retrieveAllArtist.obj")
 	public String artistSelect(Model model)
 	{
@@ -101,7 +101,7 @@ public class MediaController {
 		model.addAttribute("artistMasterDTO",artistMasterDTO);
 		return "Artist";
 	}
-=======
+
 	@RequestMapping(value ="/composerSongAssoc.obj")
 	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
 			@RequestParam("songSelect")int[] songIdList,Model model)
@@ -111,7 +111,6 @@ public class MediaController {
 		return "composerSongAssoc";
 	}
 	
->>>>>>> 0c6eab4e960ef7bb3faf779d7a5ef881aa1b51ad
 
 
 }
