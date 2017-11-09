@@ -11,5 +11,7 @@ public interface IMediaDAO {
 	List<ComposerMasterDTO> loadAllComposer();
 
 	int checkLogin(int username, String password);
+	
+	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
 
 }

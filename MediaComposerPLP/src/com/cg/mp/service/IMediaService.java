@@ -10,5 +10,6 @@ public interface IMediaService {
 
 	String checkLogin(int username, String password);
 
+	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
 
 }

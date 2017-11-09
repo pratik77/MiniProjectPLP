@@ -44,4 +44,11 @@ public class MediaDAOImpl implements IMediaDAO {
 		return 0;
 	}
 
+	@Override
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+		entityManager.persist(composer);
+		entityManager.flush();
+		return composer;
+	}
+
 }
