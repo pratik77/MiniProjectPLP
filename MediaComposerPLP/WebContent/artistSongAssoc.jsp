@@ -7,20 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript" src="javascript/artistSongAssoc.js"></script>
+
 </head>
 <body>
-<form name="form" method="post" action="composerSongAssoc.obj" onsubmit="return validateSongs(${songList.size()})">
-<h1>Composer List</h1>
+<form name="form" method="post" action="artistSongAssoc.obj" onsubmit="return validateSongs(${songList.size()})">
+<h1>Artist List</h1>
 <table border="1">
-<c:forEach items="${composerList}" var="composer">
+<c:forEach items="${artistList}" var="artist">
 <tr>
 
-<td><input type="radio" name="composerSelect" value="${composer.composerId }" required />${composer.composerId}</td>
-<td>${composer.composerName }</td>
-<td>${composer.composerBornDate }</td>
-<td>${composer.composerDiedDate }</td>
-<td>${composer.composerCaeipiNumber }</td>
-<td>${composer.composerMusicSocId }</td>
+<td><input type="radio" name="artistSelect" value="${artist.artistId }" required/>${artist.artistId}</td>
+<td>${artist.artistName }</td>
+<td>${artist.artistType }</td>
+<td>${artist.artistBornDate }</td>
+<td>${artist.artistDiedDate }</td>
 </tr>
 </c:forEach>
 </table>
@@ -41,6 +41,5 @@
 Click on the radio button to select composer and select check boxes to associate multiple songs to the composer
 
 </form>
-<%-- <br><h3>${message }</h3> --%>
 </body>
 </html>

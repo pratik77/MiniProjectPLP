@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.mp.dao.IMediaDAO;
 import com.cg.mp.dto.ArtistMasterDTO;
+import com.cg.mp.dto.ArtistSongAssoc;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
@@ -24,6 +25,7 @@ public class MediaService implements IMediaService {
 	
 	int userFlag;
 	ComposerSongAssoc composerSongAssoc=new ComposerSongAssoc();
+	ArtistSongAssoc artistSongAssoc=new ArtistSongAssoc();
 	
 	@Override
 	public String checkLogin(int username, String password) {
@@ -34,7 +36,7 @@ public class MediaService implements IMediaService {
 		else if(userFlag==2)
 			return "user";
 		else
-			return "errorLogin";
+			return "login";
 			
 	}
 	
@@ -45,9 +47,25 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+		
+		return mediaDAO.insertComposer(composer);
+	}
+	@Override
 	public List<SongMasterDTO> loadAllSongs() {
 		
 		return mediaDAO.loadAllSongs();
+
+	}
+
+	@Override
+	public ComposerMasterDTO getComposerById(int composerId) {
+		return mediaDAO.getComposerById(composerId);
+	}
+
+	@Override
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+		return mediaDAO.updateComposer(composerMasterDTO);
 	}
 
 	@Override
@@ -82,6 +100,23 @@ public class MediaService implements IMediaService {
 	public ArtistMasterDTO deleteArtist(int artistId) {
 		
 		return mediaDAO.deleteArtist(artistId);
+	}
+
+	@Override
+	public void artistSongAssoc(int artistId, int[] songIdList, int userId) {
+		// TODO Auto-generated method stub
+		
+		for(int songId:songIdList)
+		{
+		artistSongAssoc.setArtistId(artistId);
+		artistSongAssoc.setSongId(songId);
+		artistSongAssoc.setCreatedBy(userId);
+		artistSongAssoc.setCreatedOn(Date.valueOf(LocalDate.now()));
+		artistSongAssoc.setUpdatedBy(userId);
+		artistSongAssoc.setUpdatedOn(Date.valueOf(LocalDate.now()));
+		mediaDAO.artistSongAssoc(artistSongAssoc);
+		}
+		
 	}
 
 

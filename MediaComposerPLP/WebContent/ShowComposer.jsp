@@ -18,7 +18,6 @@
 <tr>
 
 <td><form:radiobutton path="composerId" value="${composer.composerId }"/>${composer.composerId}</td>
-<td>
 <td>${composer.composerName }</td>
 <td>${composer.composerBornDate }</td>
 <td>${composer.composerDiedDate }</td>
@@ -28,7 +27,6 @@
 <td>${composer.createdOn }</td>
 <td>${composer.updatedBy }</td>
 <td>${composer.updatedOn }</td>
-</td>
 </tr>
 
 </c:forEach>
@@ -41,5 +39,6 @@
 </form:form>
 
 </table>
+<a href="insertComposer.obj">Add New Composer</a>
 </body>
 </html>

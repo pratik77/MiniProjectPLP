@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.cg.mp.dto.ArtistMasterDTO;
+import com.cg.mp.dto.ArtistSongAssoc;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
@@ -23,6 +24,8 @@ public class MediaDAOImpl implements IMediaDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	UserMasterDTO userMasterDTO=new UserMasterDTO();
+	
 	@Override
 	public int checkLogin(int username, String password) {
 
@@ -30,8 +33,10 @@ public class MediaDAOImpl implements IMediaDAO {
 				+ "userMasterDTO WHERE userMasterDTO.userId=:puserId AND userMasterDTO.userPassword=:puserPassword", UserMasterDTO.class);
 		query.setParameter("puserId", username);
 		query.setParameter("puserPassword", password);
-		UserMasterDTO userMasterDTO = query.getSingleResult();
-		return userMasterDTO.getUserFlag();
+		List<UserMasterDTO> userMasterList = query.getResultList();
+		if(userMasterList.size()==0)
+			return 3;
+		return userMasterList.get(0).getUserFlag();
 	}
 
 	@Override
@@ -49,6 +54,24 @@ public class MediaDAOImpl implements IMediaDAO {
 	}
 
 	@Override
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+		entityManager.persist(composer);
+		entityManager.flush();
+		return composer;
+	}
+
+	@Override
+	public ComposerMasterDTO getComposerById(int composerId) {
+		ComposerMasterDTO composer = entityManager.find(ComposerMasterDTO.class, composerId);
+		return composer;
+	}
+
+	@Override
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+		composerMasterDTO = entityManager.merge(composerMasterDTO);
+		entityManager.flush();
+		return composerMasterDTO;
+	}
 
 	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
 		
@@ -56,7 +79,10 @@ public class MediaDAOImpl implements IMediaDAO {
 		entityManager.flush();
 	}
 	
+<<<<<<< HEAD
 	@Override
+=======
+>>>>>>> 60fb09b6c90e815822f8b0483e723a19226ea632
 	public List<ArtistMasterDTO> loadAllArtists() {
 
 		TypedQuery<ArtistMasterDTO> query = entityManager.createQuery("select a from ArtistMasterDTO a", ArtistMasterDTO.class);
@@ -74,12 +100,26 @@ public class MediaDAOImpl implements IMediaDAO {
 
 	@Override
 	public ArtistMasterDTO deleteArtist(int artistId) {
+<<<<<<< HEAD
 
 		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
 		entityManager.remove(artistMasterDTO);
 		return artistMasterDTO;
 
 
+=======
+		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
+		entityManager.remove(artistMasterDTO);
+		return artistMasterDTO;
+	}
+
+	@Override
+	public void artistSongAssoc(ArtistSongAssoc artistSongAssoc) {
+		// TODO Auto-generated method stub
+		entityManager.persist(artistSongAssoc);
+		entityManager.flush();
+		
+>>>>>>> 60fb09b6c90e815822f8b0483e723a19226ea632
 	}
 
 }
