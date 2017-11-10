@@ -51,10 +51,12 @@ public class MediaDAOImpl implements IMediaDAO {
 	@Override
 
 	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
-		// TODO Auto-generated method stub
+		
 		entityManager.persist(composerSongAssoc);
 		entityManager.flush();
 	}
+	
+	@Override
 	public List<ArtistMasterDTO> loadAllArtists() {
 
 		TypedQuery<ArtistMasterDTO> query = entityManager.createQuery("select a from ArtistMasterDTO a", ArtistMasterDTO.class);
@@ -72,15 +74,12 @@ public class MediaDAOImpl implements IMediaDAO {
 
 	@Override
 	public ArtistMasterDTO deleteArtist(int artistId) {
-<<<<<<< HEAD
+
 		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
 		entityManager.remove(artistMasterDTO);
 		return artistMasterDTO;
-=======
-		
-		return null;
 
->>>>>>> aab2a67e88352ec6d9533eab715ee9a040a046ca
+
 	}
 
 }
