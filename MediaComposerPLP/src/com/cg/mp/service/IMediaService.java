@@ -27,4 +27,7 @@ public interface IMediaService {
 	ComposerMasterDTO getComposerById(int composerId);
 	
 	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO);
+
+	void artistSongAssoc(int artistId, int[] songIdList, int userId);
+
 }
