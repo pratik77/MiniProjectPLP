@@ -2,14 +2,34 @@ package com.cg.mp.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COMPOSER_SONG_ASSOC")
 public class ComposerSongAssoc {
 	
+	@Id
+	@Column(name="COMPOSER_ID")
 	private int composerId;
+	
+	@Column(name="SONG_ID")
 	private int songId;
+	
+	@Column(name="CREATED_BY")
 	private int createdBy;
+	
+	@Column(name="CREATED_ON")
 	private Date createdOn;
+	
+	@Column(name="UPDATED_BY")
 	private int updatedBy;
+	
+	@Column(name="UPDATED_ON")
 	private Date updatedOn;
+	
 	public int getComposerId() {
 		return composerId;
 	}

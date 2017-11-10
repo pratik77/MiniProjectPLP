@@ -2,6 +2,7 @@ package com.cg.mp.service;
 
 import java.util.List;
 
+import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.SongMasterDTO;
 
@@ -12,8 +13,16 @@ public interface IMediaService {
 	String checkLogin(int username, String password);
 
 	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
-
+	
 	List<SongMasterDTO> loadAllSongs();
+
+	void compSongAssoc(int composerId, int[] songIdList, int userId);
+
+	List<ArtistMasterDTO> loadAllArtists();
+	
+	ArtistMasterDTO getArtistById(int artistId);
+	
+	ArtistMasterDTO deleteArtist(int artistId);
 	
 	ComposerMasterDTO getComposerById(int composerId);
 	
