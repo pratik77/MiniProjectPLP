@@ -2,6 +2,7 @@ package com.cg.mp.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class MediaService implements IMediaService {
 	int userFlag;
 	ComposerSongAssoc composerSongAssoc=new ComposerSongAssoc();
 	ArtistSongAssoc artistSongAssoc=new ArtistSongAssoc();
+	SongMasterDTO songMasterDTO=new SongMasterDTO();
+	List<ComposerSongAssoc>composerSongs=new ArrayList();
+	List<SongMasterDTO>songs=new ArrayList();
 	
 	@Override
 	public String checkLogin(int username, String password) {
@@ -117,6 +121,23 @@ public class MediaService implements IMediaService {
 		mediaDAO.artistSongAssoc(artistSongAssoc);
 		}
 		
+	}
+
+	@Override
+	public List<SongMasterDTO> listAllSongsForComposer(int composerId) {
+		// TODO Auto-generated method stub
+		composerSongs=mediaDAO.getComposerSongs(composerId);
+		List<SongMasterDTO>songs=new ArrayList();
+		for(ComposerSongAssoc composerSongAssoc:composerSongs)
+		{
+			System.out.println(composerSongAssoc);
+			SongMasterDTO songMaster=new SongMasterDTO(); 
+			songMaster=mediaDAO.listAllSongsForComposer(composerSongAssoc.getSongId());
+			songs.add(songMaster);
+			
+		}
+		return songs;
+			
 	}
 
 

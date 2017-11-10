@@ -32,4 +32,8 @@ public interface IMediaDAO {
 
 	void artistSongAssoc(ArtistSongAssoc artistSongAssoc);
 
+	List<ComposerSongAssoc> getComposerSongs(int composerId);
+
+	SongMasterDTO listAllSongsForComposer(int songId);
+
 }

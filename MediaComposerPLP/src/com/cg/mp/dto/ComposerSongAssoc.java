@@ -1,5 +1,6 @@
 package com.cg.mp.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -9,12 +10,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="COMPOSER_SONG_ASSOC")
-public class ComposerSongAssoc {
+public class ComposerSongAssoc implements Serializable {
 	
-	@Id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	
+
+	
 	@Column(name="COMPOSER_ID")
 	private int composerId;
 	
+	@Id
 	@Column(name="SONG_ID")
 	private int songId;
 	
@@ -66,5 +78,13 @@ public class ComposerSongAssoc {
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
+	@Override
+	public String toString() {
+		return "ComposerSongAssoc [composerId=" + composerId + ", songId="
+				+ songId + ", createdBy=" + createdBy + ", createdOn="
+				+ createdOn + ", updatedBy=" + updatedBy + ", updatedOn="
+				+ updatedOn + "]";
+	}
+	
 
 }

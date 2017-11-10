@@ -30,4 +30,6 @@ public interface IMediaService {
 
 	void artistSongAssoc(int artistId, int[] songIdList, int userId);
 
+	List<SongMasterDTO> listAllSongsForComposer(int composerId);
+
 }

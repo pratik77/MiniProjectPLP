@@ -37,7 +37,8 @@
 </c:forEach>
 </table>
 <br>
-<input type="submit" value="Associate"><br>
+<input type="submit" id="Associate1" name="Associate" value="Associate"><br>
+<input type="submit" id="Associate2" name="Associate" value="Get All Songs"><br>
 Click on the radio button to select composer and select check boxes to associate multiple songs to the composer
 
 </form>
