@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<!-- <style>
+<style>
 div.image
   {
   width:1250px;
   height:925px;
-  background:url(headphones.jpg);
+  background:url(/images/headphones.jpg);
   background-repeat:no-repeat;
   background-position:center;
   border:2px solid;
@@ -34,10 +34,11 @@ div.transparentbox p
   font-weight:bold;
   color:#CD853F;
   }
-</style> -->
+</style>
 </head>
 
-<body>
+<body background="images/headphones.jpg" >
+
 
 <form action="login.obj" method="post">
 <table align="center">
