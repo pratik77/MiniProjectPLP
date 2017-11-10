@@ -31,6 +31,7 @@ public class MediaController {
 
 	int userId;
 
+<<<<<<< HEAD
 	/**
 	 * 
 	 * @param username
@@ -38,10 +39,11 @@ public class MediaController {
 	 * @param model
 	 * @return
 	 */
+=======
+>>>>>>> 85ff1bfd91a6de45bb08e8cbd429f3cf1f9528a5
 	@RequestMapping(value="/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
 			@RequestParam("password") String password, Model model) {
-		model.addAttribute("username", username);
 		userFlag = mediaService.checkLogin(username, password);
 		userId = username;
 		if(("login").equals(userFlag))
@@ -61,8 +63,14 @@ public class MediaController {
 	}
 
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/modifyOrDelete.obj",method=RequestMethod.POST)
 	public String modifyAndDeleteComposer(@RequestParam("submit") String submit,
+=======
+	@RequestMapping(value = "/modifyOrDelete.obj",method = RequestMethod.POST)
+	public String modifyAndDeleteComposer(
+			@RequestParam("submit") String submit,
+>>>>>>> 85ff1bfd91a6de45bb08e8cbd429f3cf1f9528a5
 			@RequestParam("composerId") String composerId,
 			@ModelAttribute("composerMasterDTO") ComposerMasterDTO composerMasterDTO,
 			Model model) {
@@ -71,9 +79,16 @@ public class MediaController {
 			composerMasterDTO = mediaService.getComposerById(composerMasterDTO.getComposerId());
 			model.addAttribute("composerMasterDTO", composerMasterDTO);
 			return "ModifyComposer";
+		case "delete":
+			
 		}
+<<<<<<< HEAD
+=======
+		/*
+>>>>>>> 85ff1bfd91a6de45bb08e8cbd429f3cf1f9528a5
 		model.addAttribute("composerMasterDTO", composerMasterDTO);
-		return "Composer";
+		return "Composer";*/
+		return null;
 	}
 
 	@RequestMapping(value="/insertComposer.obj")
@@ -106,7 +121,7 @@ public class MediaController {
 		return "Composer";
 	}
 
-	@RequestMapping(value ="/retrieveComposerSong.obj")
+/*	@RequestMapping(value ="/retrieveComposerSong.obj")
 	public String retrieveCompSong( Model model)
 	{
 		composers = mediaService.loadAllComposer();
@@ -115,24 +130,75 @@ public class MediaController {
 		model.addAttribute("songList", songs);
 		return "composerSongAssoc";
 	}
+*/
+	
 
-	@RequestMapping(value ="/composerSongAssoc.obj")
-	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
-			@RequestParam("songSelect")int[] songIdList,Model model)
+	@RequestMapping(value ="/retrieveAllArtist.obj")
+	public String artistSelect(Model model)
 	{
+<<<<<<< HEAD
 		mediaService.compSongAssoc(composerId,songIdList,userId);
 		model.addAttribute("composerList",composers);
 		model.addAttribute("songList",songs);
 		model.addAttribute("message","Composer and songs associated successfully");
 		return "composerSongAssocSuccess";
+=======
+		artistList = mediaService.loadAllArtists();
+		model.addAttribute("artistList",artistList);
+		model.addAttribute("artistMasterDTO",new ArtistMasterDTO());
+		return "ShowArtist";
+>>>>>>> 85ff1bfd91a6de45bb08e8cbd429f3cf1f9528a5
+	}
+
+	@RequestMapping(value ="/modifyOrDeleteArtist.obj")
+	public String artistSelect(@RequestParam("submit") String submit,@RequestParam("artistId") int artistId,@ModelAttribute("artistMasterDTO") ArtistMasterDTO artistMasterDTO, Model model)
+	{
+		System.out.println(submit);
+		System.out.println(artistId);	
+		System.out.println(artistMasterDTO);
+		
+		if(("delete").equals(submit)){
+		artistMasterDTO = mediaService.getArtistById(artistId);
+		model.addAttribute("artistMasterDTO",artistMasterDTO);
+		artistMasterDTO = mediaService.deleteArtist(artistId);
+		artistList = mediaService.loadAllArtists();
+		model.addAttribute("artistList",artistList);
+		model.addAttribute("artistMasterDTO",new ArtistMasterDTO());
+		message = new String("Artist deleted!");
+		model.addAttribute("message",message);
+		}
+		return "ShowArtist";
+	}
+
+
+/*	@RequestMapping("/deleteArtist.obj")
+	public String deleteArtist(){
+		return "deleteArtist";
 	}
 	
-	@RequestMapping(value ="/modifyOrDeleteArtist.obj")
-	public String artistSelect(@RequestParam("submit") String submit,@RequestParam("artistId") String artistId,@ModelAttribute("artistMasterDTO") ArtistMasterDTO artistMasterDTO, Model model)
-	{
-		model.addAttribute("artistMasterDTO",artistMasterDTO);
-		return "Artist";
+	@RequestMapping(value="/getArtistId.htm")
+	public String getArtistId(@RequestParam("artistId") int artistId, Model model ){		
+		ArtistMasterDTO artistMasterDTO = mediaService.getArtistById(artistId);
+		model.addAttribute("artistMasterDTO", artistMasterDTO);
+		return "deleteArtist";
 	}
+	
+	@RequestMapping(value="/delete.htm")
+	public String delete(@RequestParam("artistId") int artistId, Model model){
+		ArtistMasterDTO artistMasterDTO = mediaService.deleteArtist(artistId);
+		
+		String message = null;
+		if(artistMasterDTO==null){
+			message = new String("Artist not found");
+		}else{
+			message = new String("Artist deleted!");
+		}
+		
+		model.addAttribute("message",message);
+		return "ShowArtist";
+	}
+	
+	*/
 	
 	@RequestMapping(value ="/retrieveArtistSong.obj")
 	public String retrieveArtistSong(Model model)
@@ -171,6 +237,17 @@ public class MediaController {
 		model.addAttribute("message","Artist and songs associated successfully");
 		return "artistSongAssocSuccess";
 	}
-
+	@RequestMapping(value ="/composerSongAssoc.obj")
+	public String compSongAssoc( @RequestParam("composerSelect")int composerId,
+			@RequestParam("songSelect")int[] songIdList,Model model)
+	{
+		//@ModelAttribute("composer") ComposerMasterDTO 
+		mediaService.compSongAssoc(composerId,songIdList,userId);
+		model.addAttribute("composerList",composerList);
+		model.addAttribute("songList",songList);
+		model.addAttribute("message","Composer and songs associated successfully");
+		return "composerSongAssocSuccess";
+	}
+	
 
 }
