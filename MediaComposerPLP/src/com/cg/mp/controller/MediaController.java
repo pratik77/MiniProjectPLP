@@ -31,10 +31,9 @@ public class MediaController {
 
 	int userId;
 
-	@RequestMapping("/login.obj")
+	@RequestMapping(value="/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
 			@RequestParam("password") String password, Model model) {
-		model.addAttribute("username", username);
 		userFlag = mediaService.checkLogin(username, password);
 		System.out.println(userFlag);
 		userId = username;
@@ -57,7 +56,7 @@ public class MediaController {
 	}
 
 
-	@RequestMapping(value = "/modifyOrDelete.obj")
+	@RequestMapping(value = "/modifyOrDelete.obj",method = RequestMethod.POST)
 	public String modifyAndDeleteComposer(
 			@RequestParam("submit") String submit,
 			@RequestParam("composerId") String composerId,
@@ -69,16 +68,13 @@ public class MediaController {
 			model.addAttribute("composerMasterDTO", composerMasterDTO);
 			return "ModifyComposer";
 		}
-		System.out.println(submit);
-		System.out.println(composerId);
-
-		System.out.println(composerMasterDTO);
-
+		/*
 		model.addAttribute("composerMasterDTO", composerMasterDTO);
-		return "Composer";
+		return "Composer";*/
+		return null;
 	}
 
-	@RequestMapping("/insertComposer.obj")
+	@RequestMapping(value="/insertComposer.obj")
 	public String add(Model model) {
 		model.addAttribute("composer", new ComposerMasterDTO());
 		return "AddComposer";

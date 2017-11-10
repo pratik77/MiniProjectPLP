@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<style>
+<!-- <style>
 div.image
   {
   width:1250px;
@@ -34,7 +34,7 @@ div.transparentbox p
   font-weight:bold;
   color:#CD853F;
   }
-</style>
+</style> -->
 </head>
 
 <body>
@@ -48,11 +48,11 @@ div.transparentbox p
 <td>Password</td><td><input type="password" name="password" required/></td>
 </tr>
 <tr>
-<td><input type="submit" value="login" required/></td>
+<td><input type="submit" value="login"/></td>
 </tr>
 </table>
 </form>
-	<form action="login.obj" method="post">
+	<%-- <form action="login.obj" method="post">
 		<table>
 			<tr>
 				<td>User Id</td>
@@ -66,9 +66,9 @@ div.transparentbox p
 				<td><input type="submit" value="login" required /></td>
 			</tr>
 		</table><br>
-		<%-- <!-- <font size="3" color="red"> --><blink>${message}</blink><!--  --></font> --%>
+		<!-- <font size="3" color="red"> --><blink>${message}</blink><!--  --></font>
 		
 	</form>
-
+ --%>
 </body>
 </html>
