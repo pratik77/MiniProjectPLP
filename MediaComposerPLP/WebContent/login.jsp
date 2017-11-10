@@ -10,7 +10,7 @@ div.image
   {
   width:1250px;
   height:925px;
-  background:url(headphones.jpg);
+  background:url(/images/headphones.jpg);
   background-repeat:no-repeat;
   background-position:center;
   border:2px solid;
@@ -37,10 +37,10 @@ div.transparentbox p
 </style>
 </head>
 
-<body align="center">
+<body background="images/headphones.jpg" >
 
 	<form action="login.obj" method="post">
-		<table>
+		<table align="center">
 			<tr>
 				<td>User Id</td>
 				<td><input type="number" name="username" required pattern="[0-9]{1,6}" title="User Id must be numeric and maximum six digit only"/></td>
