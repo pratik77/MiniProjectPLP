@@ -54,6 +54,25 @@ public class MediaDAOImpl implements IMediaDAO {
 	}
 
 	@Override
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+		entityManager.persist(composer);
+		entityManager.flush();
+		return composer;
+	}
+
+	@Override
+	public ComposerMasterDTO getComposerById(int composerId) {
+		ComposerMasterDTO composer = entityManager.find(ComposerMasterDTO.class, composerId);
+		return composer;
+	}
+
+	@Override
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+		composerMasterDTO = entityManager.merge(composerMasterDTO);
+		entityManager.flush();
+		return composerMasterDTO;
+	}
+
 	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
 		// TODO Auto-generated method stub
 		entityManager.persist(composerSongAssoc);
@@ -77,7 +96,6 @@ public class MediaDAOImpl implements IMediaDAO {
 
 	@Override
 	public ArtistMasterDTO deleteArtist(int artistId) {
-
 		ArtistMasterDTO artistMasterDTO = entityManager.find(ArtistMasterDTO.class, artistId);
 		entityManager.remove(artistMasterDTO);
 		return artistMasterDTO;

@@ -47,9 +47,25 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+		
+		return mediaDAO.insertComposer(composer);
+	}
+	@Override
 	public List<SongMasterDTO> loadAllSongs() {
 		
 		return mediaDAO.loadAllSongs();
+
+	}
+
+	@Override
+	public ComposerMasterDTO getComposerById(int composerId) {
+		return mediaDAO.getComposerById(composerId);
+	}
+
+	@Override
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+		return mediaDAO.updateComposer(composerMasterDTO);
 	}
 
 	@Override

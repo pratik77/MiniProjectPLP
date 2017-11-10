@@ -18,7 +18,15 @@ public interface IMediaDAO {
 
 	int checkLogin(int username, String password);
 	
+
+	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
+
+
 	List<SongMasterDTO> loadAllSongs();
+	
+	ComposerMasterDTO getComposerById(int composerId);
+	
+	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO);
 
 	void compSongAssoc(ComposerSongAssoc composerSongAssoc);
 

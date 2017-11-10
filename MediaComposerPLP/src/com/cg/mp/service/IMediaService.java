@@ -12,17 +12,22 @@ public interface IMediaService {
 
 	String checkLogin(int username, String password);
 
+	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
+	
 	List<SongMasterDTO> loadAllSongs();
-
 
 	void compSongAssoc(int composerId, int[] songIdList, int userId);
 
 	List<ArtistMasterDTO> loadAllArtists();
+	
 	ArtistMasterDTO getArtistById(int artistId);
+	
 	ArtistMasterDTO deleteArtist(int artistId);
+	
+	ComposerMasterDTO getComposerById(int composerId);
+	
+	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO);
 
 	void artistSongAssoc(int artistId, int[] songIdList, int userId);
-
-	
 
 }
