@@ -119,5 +119,17 @@ public class MediaService implements IMediaService {
 		
 	}
 
+	@Override
+	public ArtistMasterDTO insertArtist(ArtistMasterDTO artistMasterDTO) {
+		
+		return mediaDAO.insertArtist(artistMasterDTO);
+	}
+
+	@Override
+	public ArtistMasterDTO updateArtist(ArtistMasterDTO artistMasterDTO) {
+		
+		return mediaDAO.updateArtist(artistMasterDTO);
+	}
+
 
 }

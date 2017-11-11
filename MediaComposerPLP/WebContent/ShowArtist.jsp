@@ -60,6 +60,6 @@ ${message}
 </form:form>
 
 	</table>
-
+<a href="insertArtist.obj">Add New Artist</a>
 </body>
 </html>

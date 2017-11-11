@@ -15,6 +15,8 @@ public interface IMediaDAO {
 	List<ArtistMasterDTO> loadAllArtists();
 	ArtistMasterDTO getArtistById(int artistId);
 	ArtistMasterDTO deleteArtist(int artistId);
+	ArtistMasterDTO insertArtist(ArtistMasterDTO artistMasterDTO);
+	ArtistMasterDTO updateArtist(ArtistMasterDTO artistMasterDTO);
 
 	int checkLogin(int username, String password);
 	
