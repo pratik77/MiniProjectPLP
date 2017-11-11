@@ -14,6 +14,8 @@
 <a href="retrieveComposerSong.obj">3.Songs</a><br>
 <a href="retrieveComposerSong.obj">4.Composer Song Association</a><br>
 <a href="retrieveArtistSong.obj">5.Artist Song Association</a><br>
+<a href="retrieveComposerListForSongs.obj">6.Show songs composed by Composer</a><br>
+<a href="retrieveArtistListForSongs.obj">7.Show songs sung by Artist</a><br>
 
 </body>
 </html>

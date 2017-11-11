@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>${message }</h1><br><br><br>
-<a href="admin.jsp">Return to admin home page</a><br><br>
-<a href="login.jsp">Logout</a>
+<br>
+<a href="ui/admin.jsp">Return to admin home page</a><br><br>
+<a href="ui/login.jsp">Logout</a>
 </body>
 </html>

@@ -39,7 +39,9 @@
 <br>
 <input type="submit" value="Associate"><br>
 Click on the radio button to select composer and select check boxes to associate multiple songs to the composer
-
+<br>
+<a href="ui/admin.jsp">Return to admin home page</a><br><br>
+<a href="ui/login.jsp">Logout</a>
 </form>
 </body>
 </html>

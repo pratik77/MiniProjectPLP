@@ -47,19 +47,22 @@
 
 				</c:forEach>
 
-				
+
 			</table>
 			<tr>
 
-					<td><input type="submit" name="submit"
-						value="modify" />
-					<input type="submit" name="submit"
-						value="delete" /></td>
-				</tr><br>
+				<td><input type="submit" name="submit" value="modify" /> <input
+					type="submit" name="submit" value="delete" /></td>
+			</tr>
+			<br>
 ${message}
 </form:form>
 
 	</table>
-
+	<br>
+	<a href="ui/admin.jsp">Return to admin home page</a>
+	<br>
+	<br>
+	<a href="ui/login.jsp">Logout</a>
 </body>
 </html>

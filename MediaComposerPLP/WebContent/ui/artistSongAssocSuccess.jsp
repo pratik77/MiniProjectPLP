@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Success</title>
+<title>Insert title here</title>
 </head>
 <body>
-	${message}
+<h1>${message }</h1><br><br><br>
+<br>
+<a href="ui/admin.jsp">Return to admin home page</a><br><br>
+<a href="ui/login.jsp">Logout</a>
 </body>
 </html>

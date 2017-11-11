@@ -2,6 +2,8 @@ package com.cg.mp.service;
 
 import java.util.List;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.SongMasterDTO;
@@ -31,5 +33,9 @@ public interface IMediaService {
 	void artistSongAssoc(int artistId, int[] songIdList, int userId);
 
 	List<SongMasterDTO> listAllSongsForComposer(int composerId);
+
+	List<SongMasterDTO> listAllSongsForArtist(int artistId);
+
+	ModelAndView checkPassword(String password, String cpassword);
 
 }

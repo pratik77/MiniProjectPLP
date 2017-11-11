@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.service.IMediaService;
-
+/**
+ * 
+ * @author pratiksa
+ *
+ */
 @Controller
 public class MediaController {
 
@@ -28,6 +33,7 @@ public class MediaController {
 	List<SongMasterDTO> songs = new ArrayList();
 	List<ArtistMasterDTO> artists = new ArrayList();
 	String userFlag, message = "";
+	ModelAndView checkPassword;
 
 	int userId;
 
@@ -48,6 +54,21 @@ public class MediaController {
 			model.addAttribute("message",
 					"Invalid user ID and password combination.");
 		return userFlag;
+
+	}
+	
+	@RequestMapping(value = "/createAnAccount.obj")
+	public String createAnAccount(Model model) {
+		return "createAnAccount";
+
+	}
+	
+	@RequestMapping(value = "/accountCreation.obj")
+	public ModelAndView accountCreation(@RequestParam("password") String password,
+			@RequestParam("cpassword") String cpassword, Model model) {
+		message="";
+		checkPassword=mediaService.checkPassword(password, cpassword);
+		return checkPassword;
 
 	}
 
@@ -221,9 +242,6 @@ public class MediaController {
 		else
 		{
 			songs=mediaService.listAllSongsForComposer(composerId);
-			System.out.println(songs.size());
-			for(SongMasterDTO song:songs)
-			{System.out.println(song);}
 			if(songs.size()==0)
 			{
 				model.addAttribute("message",
@@ -237,6 +255,72 @@ public class MediaController {
 				return "composerSong";
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/retrieveComposerListForSongs.obj")
+	public String retrieveComposerListForSongs(
+			Model model)
+
+	{		
+		composers = mediaService.loadAllComposer();
+		model.addAttribute("composerList", composers);
+		return "retrieveComposerListForSongs";
+		
+	}
+	
+	@RequestMapping(value = "/listSongsForComposer.obj")
+	public String listSongsForComposer(@RequestParam("composerSelect") int composerId,
+			Model model)
+
+	{
+		songs=mediaService.listAllSongsForComposer(composerId);
+		if(songs.size()==0)
+		{
+			model.addAttribute("message",
+					"No Songs related to the Composer found.");
+			return "composerSongAssocSuccess";
+		}
+		else
+		{
+			model.addAttribute("songList", songs);
+			model.addAttribute("composerId", composerId);
+			return "listAllSongsForComposer";
+		}
+		
+		
+	}
+	
+	@RequestMapping(value = "/retrieveArtistListForSongs.obj")
+	public String retrieveArtistListForSongs(
+			Model model)
+
+	{		
+		artists = mediaService.loadAllArtists();
+		model.addAttribute("artists", artists);
+		return "retrieveArtistListForSongs";
+		
+	}
+	
+	@RequestMapping(value = "/listSongsForArtsist.obj")
+	public String listSongsForArtsist(@RequestParam("artistSelect") int artistId,
+			Model model)
+
+	{
+		songs=mediaService.listAllSongsForArtist(artistId);
+		if(songs.size()==0)
+		{
+			model.addAttribute("message",
+					"No Songs related to the Artist found.");
+			return "artistSongAssocSuccess";
+		}
+		else
+		{
+			model.addAttribute("songs", songs);
+			model.addAttribute("artistId", artistId);
+			return "listAllSongsForArtist";
+		}
+		
+		
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ArtistSongAssoc;
@@ -144,5 +145,24 @@ public class MediaDAOImpl implements IMediaDAO {
 		query.setParameter("psongId", songId);
 		return query.getSingleResult();
 	}
+
+	@Override
+	public List<ArtistSongAssoc> getArtistSongs(int artistId) {
+		// TODO Auto-generated method stub
+		TypedQuery<ArtistSongAssoc> query = entityManager.createQuery(
+				"select artistSong from ArtistSongAssoc artistSong  where artistSong.artistId=:partistId",
+				ArtistSongAssoc.class);
+		query.setParameter("partistId", artistId);
+		return query.getResultList();
+	}
+
+	@Override
+	public ModelAndView checkPassword(UserMasterDTO userMasterDTO) {
+		// TODO Auto-generated method stub
+		entityManager.persist(userMasterDTO);
+		entityManager.flush();
+		return new ModelAndView("createSuccess","userMasterDTO",userMasterDTO);
+	}
+
 
 }
