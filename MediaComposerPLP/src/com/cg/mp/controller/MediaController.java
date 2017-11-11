@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cg.mp.dto.ArtistMasterDTO;
 import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.SongMasterDTO;
+import com.cg.mp.exception.MediaException;
 import com.cg.mp.service.IMediaService;
 /**
  * 
@@ -48,7 +49,13 @@ public class MediaController {
 	@RequestMapping(value = "/login.obj")
 	public String checkLogin(@RequestParam("username") int username,
 			@RequestParam("password") String password, Model model) {
-		userFlag = mediaService.checkLogin(username, password);
+		try {
+			userFlag = mediaService.checkLogin(username, password);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		userId = username;
 		if (("login").equals(userFlag))
 			model.addAttribute("message",
@@ -67,15 +74,27 @@ public class MediaController {
 	public ModelAndView accountCreation(@RequestParam("password") String password,
 			@RequestParam("cpassword") String cpassword, Model model) {
 		message="";
-		checkPassword=mediaService.checkPassword(password, cpassword);
+		try {
+			checkPassword=mediaService.checkPassword(password, cpassword);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			return new ModelAndView("mediaError","message",e.getMessage());
+		}
 		return checkPassword;
 
 	}
 
 	@RequestMapping(value = "/retrieveAllComposer.obj")
 	public String compSelect(Model model) {
-		List<ComposerMasterDTO> composerList = mediaService.loadAllComposer();
-		composerList = mediaService.loadAllComposer();
+		List<ComposerMasterDTO> composerList;
+		try {
+			composerList = mediaService.loadAllComposer();
+			composerList = mediaService.loadAllComposer();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("composerList", composerList);
 		model.addAttribute("composerMasterDTO", new ComposerMasterDTO());
 		return "ShowComposer";
@@ -90,8 +109,14 @@ public class MediaController {
 			Model model) {
 		switch (submit) {
 		case "modify":
-			composerMasterDTO = mediaService.getComposerById(composerMasterDTO
-					.getComposerId());
+			try {
+				composerMasterDTO = mediaService.getComposerById(composerMasterDTO
+						.getComposerId());
+			} catch (MediaException e) {
+				// TODO Auto-generated catch block
+				model.addAttribute("message",e.getMessage());
+				return "mediaError";
+			}
 			model.addAttribute("composerMasterDTO", composerMasterDTO);
 			return "ModifyComposer";
 		case "delete":
@@ -118,7 +143,13 @@ public class MediaController {
 		Date sqlDate = Date.valueOf(ldate);
 		composer.setCreatedOn(sqlDate);
 		composer.setUpdatedOn(sqlDate);
-		ComposerMasterDTO composerCheck = mediaService.insertComposer(composer);
+		try {
+			ComposerMasterDTO composerCheck = mediaService.insertComposer(composer);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("message",
 				"Composer with Id " + composer.getComposerId()
 						+ " added successfully!");
@@ -127,8 +158,14 @@ public class MediaController {
 
 	@RequestMapping(value = "/retrieveComposerSong.obj")
 	public String retrieveCompSong(Model model) {
-		composers = mediaService.loadAllComposer();
-		songs = mediaService.loadAllSongs();
+		try {
+			composers = mediaService.loadAllComposer();
+			songs = mediaService.loadAllSongs();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("composerList", composers);
 		model.addAttribute("songList", songs);
 		return "composerSongAssoc";
@@ -137,7 +174,13 @@ public class MediaController {
 	@RequestMapping(value = "/retrieveAllArtist.obj")
 	public String artistSelect(Model model) {
 
-		artists = mediaService.loadAllArtists();
+		try {
+			artists = mediaService.loadAllArtists();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("artists", artists);
 		model.addAttribute("artistMasterDTO", new ArtistMasterDTO());
 		return "ShowComposer";
@@ -154,10 +197,16 @@ public class MediaController {
 		System.out.println(artistMasterDTO);
 
 		if (("delete").equals(submit)) {
-			artistMasterDTO = mediaService.getArtistById(artistId);
-			model.addAttribute("artistMasterDTO", artistMasterDTO);
-			artistMasterDTO = mediaService.deleteArtist(artistId);
-			artists = mediaService.loadAllArtists();
+			try {
+				artistMasterDTO = mediaService.getArtistById(artistId);
+				model.addAttribute("artistMasterDTO", artistMasterDTO);
+				artistMasterDTO = mediaService.deleteArtist(artistId);
+				artists = mediaService.loadAllArtists();
+			} catch (MediaException e) {
+				// TODO Auto-generated catch block
+				model.addAttribute("message",e.getMessage());
+				return "mediaError";
+			}
 			model.addAttribute("artistList", artists);
 			model.addAttribute("artistMasterDTO", new ArtistMasterDTO());
 			message = new String("Artist deleted!");
@@ -189,8 +238,14 @@ public class MediaController {
 
 	@RequestMapping(value = "/retrieveArtistSong.obj")
 	public String retrieveArtistSong(Model model) {
-		artists = mediaService.loadAllArtists();
-		songs = mediaService.loadAllSongs();
+		try {
+			artists = mediaService.loadAllArtists();
+			songs = mediaService.loadAllSongs();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("artistList", artists);
 		model.addAttribute("songList", songs);
 		return "artistSongAssoc";
@@ -206,8 +261,14 @@ public class MediaController {
 		Date sqlDate = Date.valueOf(ldate);
 		composerMasterDTO.setCreatedOn(sqlDate);
 		composerMasterDTO.setUpdatedOn(sqlDate);
-		ComposerMasterDTO composerCheck = mediaService
-				.updateComposer(composerMasterDTO);
+		try {
+			ComposerMasterDTO composerCheck = mediaService
+					.updateComposer(composerMasterDTO);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("message",
 				"Composer with Id " + composerMasterDTO.getComposerId()
 						+ " modified successfully!");
@@ -219,7 +280,13 @@ public class MediaController {
 			@RequestParam("songSelect") int[] songIdList, Model model)
 
 	{
-		mediaService.artistSongAssoc(artistId, songIdList, userId);
+		try {
+			mediaService.artistSongAssoc(artistId, songIdList, userId);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("artistList", artists);
 		model.addAttribute("songList", songs);
 		model.addAttribute("message",
@@ -232,7 +299,13 @@ public class MediaController {
 			@RequestParam("songSelect") int[] songIdList,
 			@RequestParam("Associate") String associate, Model model) {
 		if (("Associate").equals(associate)) {
-			mediaService.compSongAssoc(composerId, songIdList, userId);
+			try {
+				mediaService.compSongAssoc(composerId, songIdList, userId);
+			} catch (MediaException e) {
+				// TODO Auto-generated catch block
+				model.addAttribute("message",e.getMessage());
+				return "mediaError";
+			}
 			model.addAttribute("composerList", composers);
 			model.addAttribute("songList", songs);
 			model.addAttribute("message",
@@ -241,7 +314,13 @@ public class MediaController {
 		}
 		else
 		{
-			songs=mediaService.listAllSongsForComposer(composerId);
+			try {
+				songs=mediaService.listAllSongsForComposer(composerId);
+			} catch (MediaException e) {
+				// TODO Auto-generated catch block
+				model.addAttribute("message",e.getMessage());
+				return "mediaError";
+			}
 			if(songs.size()==0)
 			{
 				model.addAttribute("message",
@@ -262,7 +341,13 @@ public class MediaController {
 			Model model)
 
 	{		
-		composers = mediaService.loadAllComposer();
+		try {
+			composers = mediaService.loadAllComposer();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("composerList", composers);
 		return "retrieveComposerListForSongs";
 		
@@ -273,7 +358,13 @@ public class MediaController {
 			Model model)
 
 	{
-		songs=mediaService.listAllSongsForComposer(composerId);
+		try {
+			songs=mediaService.listAllSongsForComposer(composerId);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		if(songs.size()==0)
 		{
 			model.addAttribute("message",
@@ -295,7 +386,13 @@ public class MediaController {
 			Model model)
 
 	{		
-		artists = mediaService.loadAllArtists();
+		try {
+			artists = mediaService.loadAllArtists();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		model.addAttribute("artists", artists);
 		return "retrieveArtistListForSongs";
 		
@@ -306,7 +403,13 @@ public class MediaController {
 			Model model)
 
 	{
-		songs=mediaService.listAllSongsForArtist(artistId);
+		try {
+			songs=mediaService.listAllSongsForArtist(artistId);
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message",e.getMessage());
+			return "mediaError";
+		}
 		if(songs.size()==0)
 		{
 			model.addAttribute("message",

@@ -10,38 +10,39 @@ import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.dto.UserMasterDTO;
+import com.cg.mp.exception.MediaException;
 
 public interface IMediaDAO {
 
-	List<ComposerMasterDTO> loadAllComposer();
+	List<ComposerMasterDTO> loadAllComposer() throws MediaException;
 
-	List<ArtistMasterDTO> loadAllArtists();
-	ArtistMasterDTO getArtistById(int artistId);
-	ArtistMasterDTO deleteArtist(int artistId);
+	List<ArtistMasterDTO> loadAllArtists()throws MediaException;
+	ArtistMasterDTO getArtistById(int artistId) throws MediaException;
+	ArtistMasterDTO deleteArtist(int artistId) throws MediaException;
 
-	int checkLogin(int username, String password);
+	int checkLogin(int username, String password) throws MediaException;
 	
 
-	ComposerMasterDTO insertComposer(ComposerMasterDTO composer);
+	ComposerMasterDTO insertComposer(ComposerMasterDTO composer) throws MediaException;
 
 
-	List<SongMasterDTO> loadAllSongs();
+	List<SongMasterDTO> loadAllSongs() throws MediaException;
 	
-	ComposerMasterDTO getComposerById(int composerId);
+	ComposerMasterDTO getComposerById(int composerId) throws MediaException;
 	
-	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO);
+	ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO)throws MediaException;
 
-	void compSongAssoc(ComposerSongAssoc composerSongAssoc);
+	void compSongAssoc(ComposerSongAssoc composerSongAssoc)throws MediaException;
 
-	void artistSongAssoc(ArtistSongAssoc artistSongAssoc);
+	void artistSongAssoc(ArtistSongAssoc artistSongAssoc)throws MediaException;
 
-	List<ComposerSongAssoc> getComposerSongs(int composerId);
+	List<ComposerSongAssoc> getComposerSongs(int composerId)throws MediaException;
 
-	SongMasterDTO listAllSongsForComposer(int songId);
+	SongMasterDTO listAllSongsForComposer(int songId)throws MediaException;
 
-	List<ArtistSongAssoc> getArtistSongs(int artistId);
+	List<ArtistSongAssoc> getArtistSongs(int artistId)throws MediaException;
 
-	ModelAndView checkPassword(UserMasterDTO userMasterDTO);
+	ModelAndView checkPassword(UserMasterDTO userMasterDTO)throws MediaException;
 
 
 }

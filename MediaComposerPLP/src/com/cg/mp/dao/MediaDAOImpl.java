@@ -16,6 +16,7 @@ import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.dto.UserMasterDTO;
+import com.cg.mp.exception.MediaException;
 
 @Repository
 @Transactional
@@ -28,7 +29,7 @@ public class MediaDAOImpl implements IMediaDAO {
 	ComposerMasterDTO composerMasterDTO = new ComposerMasterDTO();
 
 	@Override
-	public int checkLogin(int username, String password) {
+	public int checkLogin(int username, String password) throws MediaException {
 
 		TypedQuery<UserMasterDTO> query = entityManager
 				.createQuery(
@@ -37,130 +38,201 @@ public class MediaDAOImpl implements IMediaDAO {
 						UserMasterDTO.class);
 		query.setParameter("puserId", username);
 		query.setParameter("puserPassword", password);
-		List<UserMasterDTO> userMasterList = query.getResultList();
+		List<UserMasterDTO> userMasterList;
+		try {
+			userMasterList = query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in checking login");
+		}
 		if (userMasterList.size() == 0)
 			return 3;
 		return userMasterList.get(0).getUserFlag();
 	}
 
 	@Override
-	public List<ComposerMasterDTO> loadAllComposer() {
+	public List<ComposerMasterDTO> loadAllComposer() throws MediaException {
 		TypedQuery<ComposerMasterDTO> query = entityManager.createQuery(
 				"select c from ComposerMasterDTO c", ComposerMasterDTO.class);
-		return query.getResultList();
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in loading composers.");
+		}
 	}
 
 	@Override
-	public List<SongMasterDTO> loadAllSongs() {
+	public List<SongMasterDTO> loadAllSongs() throws MediaException {
 
 		TypedQuery<SongMasterDTO> query = entityManager.createQuery(
 				"select songs from SongMasterDTO songs", SongMasterDTO.class);
-		return query.getResultList();
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in loading songs.");
+		}
 	}
 
 	@Override
-	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
-		entityManager.persist(composer);
-		entityManager.flush();
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) throws MediaException {
+		try {
+			entityManager.persist(composer);
+			entityManager.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in inserting composers.");
+		}
 		return composer;
 	}
 
 	@Override
-	public ComposerMasterDTO getComposerById(int composerId) {
-		ComposerMasterDTO composer = entityManager.find(
-				ComposerMasterDTO.class, composerId);
+	public ComposerMasterDTO getComposerById(int composerId) throws MediaException {
+		ComposerMasterDTO composer;
+		try {
+			composer = entityManager.find(
+					ComposerMasterDTO.class, composerId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in getting composer by Id.");
+		}
 		return composer;
 	}
 
 	@Override
-	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
-		composerMasterDTO = entityManager.merge(composerMasterDTO);
-		entityManager.flush();
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) throws MediaException {
+		try {
+			composerMasterDTO = entityManager.merge(composerMasterDTO);
+			entityManager.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in updating composers.");
+		}
 		return composerMasterDTO;
 	}
 
-	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) {
+	public void compSongAssoc(ComposerSongAssoc composerSongAssoc) throws MediaException {
 
-		entityManager.persist(composerSongAssoc);
-		entityManager.flush();
+		try {
+			entityManager.persist(composerSongAssoc);
+			entityManager.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in associating composers to songs.");		}
 	}
 
 	@Override
-	public List<ArtistMasterDTO> loadAllArtists() {
+	public List<ArtistMasterDTO> loadAllArtists() throws MediaException {
 
 		TypedQuery<ArtistMasterDTO> query = entityManager.createQuery(
 				"select a from ArtistMasterDTO a", ArtistMasterDTO.class);
-		return query.getResultList();
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in loading all artists.");
+		}
 	}
 
 	@Override
-	public ArtistMasterDTO getArtistById(int artistId) {
+	public ArtistMasterDTO getArtistById(int artistId) throws MediaException {
 		ArtistMasterDTO artistMasterDTO = new ArtistMasterDTO();
 		TypedQuery<ArtistMasterDTO> query = entityManager.createQuery(
 				"select a from ArtistMasterDTO a where a.artistId=:partistId",
 				ArtistMasterDTO.class);
 		query.setParameter("partistId", artistId);
-		artistMasterDTO = query.getSingleResult();
+		try {
+			artistMasterDTO = query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in getting artist by id .");
+		}
 		return artistMasterDTO;
 	}
 
 	@Override
-	public ArtistMasterDTO deleteArtist(int artistId) {
+	public ArtistMasterDTO deleteArtist(int artistId) throws MediaException {
 		ArtistMasterDTO artistMasterDTO = entityManager.find(
 				ArtistMasterDTO.class, artistId);
-		entityManager.remove(artistMasterDTO);
+		try {
+			entityManager.remove(artistMasterDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in deleting artist.");
+		}
 		return artistMasterDTO;
 	}
 
 	@Override
-	public void artistSongAssoc(ArtistSongAssoc artistSongAssoc) {
+	public void artistSongAssoc(ArtistSongAssoc artistSongAssoc) throws MediaException {
 		// TODO Auto-generated method stub
-		entityManager.persist(artistSongAssoc);
-		entityManager.flush();
+		try {
+			entityManager.persist(artistSongAssoc);
+			entityManager.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in associating songs to artist..");
+		}
 	}
 
 	@Override
-	public List<ComposerSongAssoc> getComposerSongs(int composerId) {
+	public List<ComposerSongAssoc> getComposerSongs(int composerId) throws MediaException {
 		// TODO Auto-generated method stub
 		TypedQuery<ComposerSongAssoc> query = entityManager.createQuery(
 				"select composerSong from ComposerSongAssoc composerSong  where composerSong.composerId=:pcomposerId",
 				ComposerSongAssoc.class);
 		query.setParameter("pcomposerId", composerId);
-		for(ComposerSongAssoc composerSongAssoc:query.getResultList())
-		{
-			System.out.println(composerSongAssoc);
-			
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in loading composers and song list.");
 		}
-		return query.getResultList();
 
 	}
 
 	@Override
-	public SongMasterDTO listAllSongsForComposer(int songId) {
+	public SongMasterDTO listAllSongsForComposer(int songId) throws MediaException {
 		// TODO Auto-generated method stub
 		
 		TypedQuery<SongMasterDTO> query = entityManager.createQuery(
 				"select songMasterDTO from SongMasterDTO songMasterDTO where songMasterDTO.songId=:psongId",
 				SongMasterDTO.class);
 		query.setParameter("psongId", songId);
-		return query.getSingleResult();
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in loading songs for composer..");
+		}
 	}
 
 	@Override
-	public List<ArtistSongAssoc> getArtistSongs(int artistId) {
+	public List<ArtistSongAssoc> getArtistSongs(int artistId) throws MediaException {
 		// TODO Auto-generated method stub
 		TypedQuery<ArtistSongAssoc> query = entityManager.createQuery(
 				"select artistSong from ArtistSongAssoc artistSong  where artistSong.artistId=:partistId",
 				ArtistSongAssoc.class);
 		query.setParameter("partistId", artistId);
-		return query.getResultList();
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in getting songs for artist..");
+		}
 	}
 
 	@Override
-	public ModelAndView checkPassword(UserMasterDTO userMasterDTO) {
+	public ModelAndView checkPassword(UserMasterDTO userMasterDTO) throws MediaException {
 		// TODO Auto-generated method stub
-		entityManager.persist(userMasterDTO);
-		entityManager.flush();
+		try {
+			entityManager.persist(userMasterDTO);
+			entityManager.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new MediaException(e.getMessage()+" and problems in matching password.");
+		}
 		return new ModelAndView("createSuccess","userMasterDTO",userMasterDTO);
 	}
 

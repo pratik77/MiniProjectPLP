@@ -16,6 +16,7 @@ import com.cg.mp.dto.ComposerMasterDTO;
 import com.cg.mp.dto.ComposerSongAssoc;
 import com.cg.mp.dto.SongMasterDTO;
 import com.cg.mp.dto.UserMasterDTO;
+import com.cg.mp.exception.MediaException;
 
 @Component("service")
 public class MediaService implements IMediaService {
@@ -33,7 +34,7 @@ public class MediaService implements IMediaService {
 	List<SongMasterDTO> songs = new ArrayList();
 
 	@Override
-	public String checkLogin(int username, String password) {
+	public String checkLogin(int username, String password) throws MediaException {
 		// TODO Auto-generated method stub
 		userFlag = mediaDAO.checkLogin(username, password);
 		if (userFlag == 1)
@@ -46,35 +47,35 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
-	public List<ComposerMasterDTO> loadAllComposer() {
+	public List<ComposerMasterDTO> loadAllComposer() throws MediaException {
 		return mediaDAO.loadAllComposer();
 	}
 
 	@Override
-	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) {
+	public ComposerMasterDTO insertComposer(ComposerMasterDTO composer) throws MediaException {
 
 		return mediaDAO.insertComposer(composer);
 	}
 
 	@Override
-	public List<SongMasterDTO> loadAllSongs() {
+	public List<SongMasterDTO> loadAllSongs() throws MediaException {
 
 		return mediaDAO.loadAllSongs();
 
 	}
 
 	@Override
-	public ComposerMasterDTO getComposerById(int composerId) {
+	public ComposerMasterDTO getComposerById(int composerId) throws MediaException {
 		return mediaDAO.getComposerById(composerId);
 	}
 
 	@Override
-	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) {
+	public ComposerMasterDTO updateComposer(ComposerMasterDTO composerMasterDTO) throws MediaException {
 		return mediaDAO.updateComposer(composerMasterDTO);
 	}
 
 	@Override
-	public void compSongAssoc(int composerId, int[] songIdList, int userId) {
+	public void compSongAssoc(int composerId, int[] songIdList, int userId) throws MediaException {
 		// TODO Auto-generated method stub
 		for (int songId : songIdList) {
 			composerSongAssoc.setComposerId(composerId);
@@ -87,26 +88,26 @@ public class MediaService implements IMediaService {
 		}
 	}
 
-	public List<ArtistMasterDTO> loadAllArtists() {
+	public List<ArtistMasterDTO> loadAllArtists() throws MediaException {
 
 		return mediaDAO.loadAllArtists();
 
 	}
 
 	@Override
-	public ArtistMasterDTO getArtistById(int artistId) {
+	public ArtistMasterDTO getArtistById(int artistId) throws MediaException {
 
 		return mediaDAO.getArtistById(artistId);
 	}
 
 	@Override
-	public ArtistMasterDTO deleteArtist(int artistId) {
+	public ArtistMasterDTO deleteArtist(int artistId) throws MediaException {
 
 		return mediaDAO.deleteArtist(artistId);
 	}
 
 	@Override
-	public void artistSongAssoc(int artistId, int[] songIdList, int userId) {
+	public void artistSongAssoc(int artistId, int[] songIdList, int userId) throws MediaException {
 		// TODO Auto-generated method stub
 
 		for (int songId : songIdList) {
@@ -122,7 +123,7 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
-	public List<SongMasterDTO> listAllSongsForComposer(int composerId) {
+	public List<SongMasterDTO> listAllSongsForComposer(int composerId) throws MediaException {
 		// TODO Auto-generated method stub
 		composerSongs = mediaDAO.getComposerSongs(composerId);
 		List<SongMasterDTO> songs = new ArrayList();
@@ -139,7 +140,7 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
-	public List<SongMasterDTO> listAllSongsForArtist(int artistId) {
+	public List<SongMasterDTO> listAllSongsForArtist(int artistId) throws MediaException {
 		// TODO Auto-generated method stub
 		artistSongs = mediaDAO.getArtistSongs(artistId);
 		List<SongMasterDTO> songs = new ArrayList();
@@ -154,7 +155,7 @@ public class MediaService implements IMediaService {
 	}
 
 	@Override
-	public ModelAndView checkPassword(String password, String cpassword) {
+	public ModelAndView checkPassword(String password, String cpassword) throws MediaException {
 		// TODO Auto-generated method stub
 		if(password.equals(cpassword))
 		{

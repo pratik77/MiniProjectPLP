@@ -5,22 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/loginstyle.css">
 </head>
 <body background="images/headphones.jpg">
 	<form action="login.obj" method="post">
 		<table align="center">
 			<tr>
-				<td>User Id</td>
-				<td><input type="number" name="username" required /></td>
+				<td><input type="number" name="username" placeholder="User Id"
+					class="input" required /></td>
 			</tr>
 			<tr>
-				<td>Password</td>
-				<td><input type="password" name="password" required /></td>
+				<td><input type="password" name="password"
+					placeholder="Password" class="input" required /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="login" required /></td>
+				<td><input type="submit" value="Log in" class="login" required /><a
+					href="createAnAccount.obj"><button class="signup" type="button">Sign
+							up</button></a></td>
 			</tr>
-			<tr><td><a href="createAnAccount.obj">Create an account</a></td></tr>
 		</table>
 	</form>
 </body>

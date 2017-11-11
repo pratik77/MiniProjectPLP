@@ -1,0 +1,33 @@
+@CHARSET "ISO-8859-1";
+body {
+    background: url(https://github.com/pratik77/MiniProjectPLP/blob/master/MediaComposerPLP/WebContent/images/headphones.jpg?raw=true) top center no-repeat;
+  
+}
+form {
+  margin-top:260px
+}
+.login {
+  width:48%;
+  margin:10px 0;
+  padding:5px;
+  cursor:pointer;
+  border: 1px solid #03A9F4;
+  background: #03A9F4;
+  color:#fff;
+}
+.signup {
+  width:48%;
+  padding:5px;
+  margin-left:4%;
+  cursor:pointer;
+  border: 1px solid #03A9F4;
+  background: #03A9F4;
+  color:#fff
+  
+}
+.input{
+  padding:6px;
+  margin:2px 0;
+  border:1px solid #03A9F4;
+  
+}
